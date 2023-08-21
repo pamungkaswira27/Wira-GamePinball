@@ -15,6 +15,9 @@ public class SwitchController : MonoBehaviour
     public Material onMaterial;
     public Material offMaterial;
 
+    public AudioManager audioManager;
+    public VFXManager vfxManager;
+
     Renderer renderer;
     SwitchState state;
 
@@ -32,6 +35,7 @@ public class SwitchController : MonoBehaviour
         if (other == bola)
         {
             Toggle();
+            vfxManager.PlaySwitchVFX(transform.position);
         }
     }
 
@@ -56,10 +60,12 @@ public class SwitchController : MonoBehaviour
         if (state == SwitchState.On)
         {
             Set(false);
+            audioManager.PlaySwitchOffSFX(transform.position);
         }
         else
         {
             Set(true);
+            audioManager.PlaySwitchOnSFX(transform.position);
         }
     }
 

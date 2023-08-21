@@ -6,6 +6,9 @@ public class BumperController : MonoBehaviour
     public float multiplier;
     public Color color;
 
+    public AudioManager audioManager;
+    public VFXManager vfxManager;
+
     Animator animator;
     Renderer renderer;
 
@@ -26,6 +29,12 @@ public class BumperController : MonoBehaviour
 
             // Animasi bumper
             animator.SetTrigger("hit");
+
+            // Play SFX
+            audioManager.PlayBumperSFX(collision.transform.position);
+
+            // Play VFX
+            vfxManager.PlayBumperVFX(collision.transform.position);
         }
     }
 }
